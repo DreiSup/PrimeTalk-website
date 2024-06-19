@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React /* { useEffect, useState } */ from 'react'
 import useSectionObserver from '../Components/Utilities/SectionObserver';
 import { ReactSVG } from 'react-svg';
 

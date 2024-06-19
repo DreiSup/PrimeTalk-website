@@ -1,22 +1,22 @@
-import React, { useState } from 'react'
+/* import React, { useState } from 'react' */
 import { useSection } from './Utilities/SectionContext';
 
 import logo from "../assets/logoNavBar.png"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+/* import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom'; */
 
 const NavBar = () => {
-    const nav = useNavigate();
+   /*  const nav = useNavigate(); */
 
-    const [isOpen, setIsOpen] = useState(false);
+    /* const [isOpen, setIsOpen] = useState(false); */
 
-    const toggleNavbar = () => {
+    /* const toggleNavbar = () => {
         console.log("navbar toggle");
         setIsOpen(!isOpen);
-    }
+    } */
 /* --- asctive section n shi --- */
     const { activeSection } = useSection();
 /* ----------------------------- */
