@@ -1,4 +1,4 @@
-import React /* { useEffect, useState } */ from 'react'
+import React, { FormEvent } /* { useEffect, useState } */ from 'react'
 import useSectionObserver from '../Components/Utilities/SectionObserver';
 import { ReactSVG } from 'react-svg';
 
@@ -16,6 +16,31 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';
 const Home: React.FC = () => {
 
     useSectionObserver();
+
+/*  ------- FORM submit n shi-------- */
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget); 
+
+        formData.append("access_key", "aa308b95-7fda-486b-9685-0f82c57ab516");
+
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: json
+        }).then((res) => res.json());
+
+        if (res.success) {
+        console.log("Success", res);
+        }
+    };
+/* --------------------------------- */
 
 
 
@@ -86,7 +111,7 @@ const Home: React.FC = () => {
             <span className='w-full sm:w-3/6 h-[1px] bg-gris'></span>
         </div>
         <div className='sm:text-3xl font-splinesans font-semibold flex flex-col gap-8 '>
-            <button className='flex p-2 px-5 sm:p-5 sm:px-20 bg-gris text-verde1 gap-4 items-center mx-auto rounded-full mb-10 lg:m-0'>
+            <button className='flex  justify-center p-2 px-5 sm:p-5 sm:px-20 bg-gris text-verde1 gap-4 items-center mx-auto rounded-full mb-10 lg:m-0'>
                 <FontAwesomeIcon className='text-xl' icon={faPhone} />
                 <p className=''>Llámanos</p>
             </button>
@@ -95,31 +120,33 @@ const Home: React.FC = () => {
         <span className='block border-b border-dotted border-gris w-full my-8'></span>
         <div className='flex flex-col gap-8'>
             <p className='font-splinesans text-3xl text-gris mx-auto font-semibold'>Contáctanos por email</p>
-            <form className='font-splinesans'>
+            <form onSubmit={onSubmit}
+             className='font-splinesans'
+             >
                 <div className='flex flex-col lg:flex-row gap-8 '>
                     <div className='flex flex-col w-full lg:w-3/6 gap-5 justify-start'>
                         <label htmlFor="nombre">
-                            <input type="text" placeholder='Nombre'
+                            <input type="text" placeholder='Nombre' name="nombre" required
                                 className='appearance-none black w-full bg-verde1 rounded-md py-3 px-4 border-b-gris border border-verde1  focus:border-black focus:outline-none placeholder:text-gris' 
                             />
                         </label>
                         <label htmlFor="email">
-                            <input type="email" placeholder='Email'
+                            <input type="email" placeholder='Email' name="email" required
                                 className='appearance-none black w-full bg-verde1 rounded-md py-3 px-4 border-b-gris border border-verde1  focus:border-black focus:outline-none placeholder:text-gris' 
                             />
                         </label>
                         <label htmlFor="Asunto">
-                            <input type="text" placeholder='Asunto'
+                            <input type="text" placeholder='Asunto' name="asunto" required
                                 className='appearance-none black w-full bg-verde1 rounded-md py-3 px-4 border-b-gris border border-verde1  focus:border-black focus:outline-none placeholder:text-gris' 
                             />
                         </label>
                     </div>
                     <div className='lg:w-3/6 flex flex-col'>
                         <label htmlFor="mensaje">
-                            <textarea name="mensaje" id="mensaje" placeholder="Mensaje"
+                            <textarea name="mensaje" id="mensaje" placeholder="Mensaje" required
                                 className='appearance-none leading-tight w-full bg-verde1 rounded-md py-3 px-4  border-x-gris border-b-gris border border-verde1 focus:border-black focus:outline-none placeholder:text-gris resize-none min-h-48'></textarea>
                         </label>
-                        <button type="button" className='p-2 bg-gris rounded-full px-4 font-semibold text-verde1 lg:mx-auto'>Enviar mensaje</button>
+                        <button type="submit" className='p-2 bg-gris rounded-full px-4 font-semibold text-verde1 lg:mx-auto'>Enviar mensaje</button>
                     </div>
                 </div>
             </form>
