@@ -20,9 +20,24 @@ const NavBar = () => {
 /* --- asctive section n shi --- */
     const { activeSection } = useSection();
 /* ----------------------------- */
-
-const lmao = () => {
+const scrollToNosotros = () => {
+    window.scrollTo({top: 1050, left:0, behavior: 'smooth'})
     console.log('lmao')
+}
+
+const scrollToValores = () => {
+    window.scrollTo({top: 2050, left:0, behavior: 'smooth'})
+    console.log('scrolled to valores')
+}
+
+const scrollToSector = () => {
+    window.scrollTo({top: 3000, left:0, behavior: 'smooth'})
+    console.log('scrolled to valores')
+}
+
+const scrollToContacto = () => {
+    window.scrollTo({top: 4300, left:0, behavior: 'smooth'})
+    console.log('scrolled to valores')
 }
 
   return (<>
@@ -30,22 +45,22 @@ const lmao = () => {
     <section className='sticky top-0 z-[999] w-full p-6 bg-gris  flex mx-auto overflow-hidden'>
         <div className='flex w-full md:w-[1240px] justify-between items-center gap-5 mx-auto'>
             <div>
-                <img className='min-w-32 w-40 md:w-52' src={logo} alt="" />
+                <img className='min-w-32 w-40 md:w-52 cursor-pointer' src={logo} alt=""/>
             </div>
             <div className='flex items-center gap-12 font-splinesans font-semibold'>
                 <ul className='hidden lg:flex gap-8 text-white'>
-                    <li className={` ${activeSection === 'Nosotros' ? 'underline underline-offset-4 underline-verde1 text-verde1' : ''}`} >
+                    <li className={`cursor-pointer ${activeSection === 'Nosotros' ? 'underline underline-offset-4 underline-verde1 text-verde1' : ''}`} onClick={scrollToNosotros} >
                         Nosotros
                     </li>
-                    <li className={` ${activeSection === 'Valores' ? 'underline underline-offset-4 underline-verde1 text-verde1' : ''}`} onClick={lmao}>
+                    <li className={`cursor-pointer ${activeSection === 'Valores' ? 'underline underline-offset-4 underline-verde1 text-verde1' : ''}`} onClick={scrollToValores}>
                         Valores
                     </li>
-                    <li className={` ${activeSection === 'Sector' ? 'underline underline-offset-4 underline-verde1 text-verde1' : ''}`} >
-                        <a href="#sector">Sector</a>
+                    <li className={`cursor-pointer ${activeSection === 'Sector' ? 'underline underline-offset-4 underline-verde1 text-verde1' : ''}`} onClick={scrollToSector} >
+                        Sector
                     </li>
                 </ul>
                     <button className='flex items-center justify-center bg-verde1 p-2 gap-2 rounded-full px-4 '
-                        onClick={lmao}>
+                        onClick={scrollToContacto}>
                         <FontAwesomeIcon className='text-sm pt-1' icon={faPhone} />
                         <p className='pt-1'>Contacto</p>
                     </button>
