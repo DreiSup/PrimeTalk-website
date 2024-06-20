@@ -36,9 +36,20 @@ const scrollToSector = () => {
 }
 
 const scrollToContacto = () => {
-    window.scrollTo({top: 4300, left:0, behavior: 'smooth'})
-    console.log('scrolled to valores')
-}
+    // Define the scroll position for desktop and mobile
+    const desktopScrollPosition = 4300;
+    const mobileScrollPosition = 3100; // Adjust this value as needed for mobile
+
+    // Determine if the user is on a mobile device based on window width
+    const isMobile = window.innerWidth <= 768; // Adjust the width threshold as needed
+
+    // Set the scroll position based on the device type
+    const scrollPosition = isMobile ? mobileScrollPosition : desktopScrollPosition;
+
+    // Scroll to the desired position
+    window.scrollTo({ top: scrollPosition, left: 0, behavior: 'smooth' });
+    console.log('scrolled to valores');
+};
 
   return (<>
     
